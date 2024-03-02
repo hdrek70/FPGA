@@ -1,0 +1,25 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+
+entity Vhdl_Distance_calkul is
+		 port
+			(
+				CLOCK_50               : in std_logic;
+				Calkul_reset_n                : in std_logic;
+				Puls             : in std_logic;
+				Distance      : out std_logic_vector(8 downto 0)
+			);
+
+end entity;
+
+architecture rtl of counter is
+
+
+
+
+
+
+
+end rtl;

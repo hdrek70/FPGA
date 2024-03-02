@@ -1,0 +1,60 @@
+-------------
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+
+entity Vhdl_Tirigger_generator is
+       port
+         (
+            CLOCK_50       : in std_logic;
+            Trigger        : out std_logic
+         );
+
+end entity;
+
+architecture rtl of Vhdl_Tirigger_generator is
+
+  component Counter is
+
+	 generic (n:POSiTIVE:=10);
+	 port    (
+				 CLOCK_50               : in std_logic;
+				 reset_n                : in std_logic;
+				 enable              : in std_logic;
+				 Counter_output      : out std_logic_vector(n-1 downto 0)
+			   );
+	end component;
+   
+	signal resetCaunter :std_logic;
+	signal outputCaunter: std_logic_vector(23 downto 0);
+	
+	begin
+	   process(CLOCK_50 )
+	constant ms250        :std_logic_vector(23 downto 0):="101111101000001111000010";
+	constant ms250And100us:std_logic_vector(23 downto 0):="101111101100111011111010";
+			begin
+		     if (outputCaunter >ms250And100us) then
+					Trigger<='1';
+				else
+				   Trigger<='0';
+						 if  (outputCaunter = ms250And100us or outputCaunter= "00000000000000000000000" ) then
+							resetCaunter<='0';
+						 else
+							resetCaunter<='1';
+						 end if;
+				 end if;
+		
+		 
+		 end process;
+		
+		
+		
+		
+
+
+end rtl;	 
+
+	 
+
+ 
